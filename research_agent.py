@@ -4,7 +4,16 @@ from langchain_core.messages import HumanMessage, AnyMessage, SystemMessage, AIM
 from langchain_ollama import ChatOllama
 from pydantic import BaseModel, Field
 import streamlit as st
-from functions import google_search
+from langchain_tavily import TavilySearch
+from dotenv import load_dotenv
+import os , getpass
+
+
+
+def google_search(query: str):
+    t = TavilySearch(max_results=5)
+    res = t.invoke({"query": query})
+    return res
 
 
 # ===========================
